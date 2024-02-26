@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=Board
+comment1.params=
+comment1.target=Board()
+comment2.params=player
+comment2.target=void\ getMove(int)
+comment3.params=
+comment3.target=void\ printBoard()
+comment4.params=pos\ player
+comment4.target=int\ makeMove(int,\ Player)
+comment4.text=Returns\ 1\ if\ move\ is\ possible\ and\ 0\ if\ not
+numComments=5

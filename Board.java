@@ -8,6 +8,12 @@ public class Board
     public Board()
     {
         board = new char[6][7];
+        for(int i = 0; i < board.length; i++){
+            for(int j = 0; j < board[i].length; j++){
+                board[i][j] = ' ';
+            }
+        }
+        
         red = new Player('R');
         black = new Player('B');
     }
@@ -32,11 +38,21 @@ public class Board
         
     }
     
+    public void printBoard(){
+        System.out.println(" 1 2 3 4 5 6 7 ");
+        for(int y = 0; y < board.length; y++){
+            System.out.println("+-+-+-+-+-+-+-+");
+            for(int x = 0; x < board[y].length; x++){
+                System.out.print("+" + board[y][x]);
+            }
+            System.out.println("+");
+        }
+        System.out.println("+-+-+-+-+-+-+-+");
+    }
+    
     /*Returns 1 if move is possible and 0 if not*/
     public int makeMove(int pos, Player player)
     {
         return 0;
     }
-    
-    
 }
