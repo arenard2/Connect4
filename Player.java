@@ -15,9 +15,9 @@ public class Player
     {
         int move = -1;
         Scanner scan = new Scanner(System.in);
-        while(move < 1 && move > 7){
+        while(move < 1 || move > 7){
             System.out.print("Enter Move(1-7): ");
-            move = Integer.parseInt(scan.nextLine());
+            move = Integer.parseInt(scan.nextLine()) -1;
         }
         return move;
     }
