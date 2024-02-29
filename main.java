@@ -11,6 +11,7 @@ public class main
             w = board.checkWinner();
         }
         board.printBoard();
+        
         if(w == 't'){
             System.out.println("Tie!");
         }else{

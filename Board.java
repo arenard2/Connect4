@@ -72,16 +72,31 @@ public class Board
     //returns ' ' if no one, 't' if tie, or name of player for winner
     public char checkWinner()
     {
-        char dir1 = traverse(0, 0, 0);
-        char dir2 = traverse(1, 0, 0);
+        char dir1 = ' ';
+        char dir2 = ' ';
         char dir3 = traverse(2, 0, 0);
-        if(dir1 != ' '){
-            return dir1;
-        } else if(dir2 != ' '){
-            return dir2;
-        } else if(dir3 != ' '){
+        if(dir3 != ' '){
             return dir3;
         }
+        
+        dir3 = traverse(3, 0, 0);
+        if(dir3 != ' '){
+            return dir3;
+        }
+        
+        for(int y = 0; y < board.length; y++){
+            dir1 = traverse(0, 0, y);
+            for(int x = 0; x < board.length; x++){
+                dir2 = traverse(1, x, y);
+                
+                if(dir1 != ' '){
+                    return dir1;
+                } else if(dir2 != ' '){
+                    return dir2;
+                }
+            }
+        }
+        
         return tie();
     }
     
@@ -109,7 +124,7 @@ public class Board
                         return player;
                     }
                 } else if(player != board[y][xi]){
-                    counter = 0;
+                    counter = 1;
                     player = board[y][xi];
                 }
             }
@@ -123,27 +138,29 @@ public class Board
                         return player;
                     }
                 } else if(player != board[yi][x]){
-                    counter = 0;
+                    counter = 1;
                     player = board[yi][x];
                 }
             }
         } else if(dir == 2){
-            int yi = y;
-            int xi = x;
-            int counter = 0;
-            char player = ' ';
-            while(yi < board.length && xi < board[0].length){
-                if(player != ' ' && player == board[yi][xi]){
-                    counter += 1;
-                    if(counter == 4){
-                        return player;
+            for(y = board.length; y >= 3; y--){
+                for(x = 0; x <= board[y].length - 4; x++){
+                    if(board[y][x] == board[y-1][x+1] &&
+                       board[y][x] == board[y-2][x+2] &&
+                       board[y][x] == board[y-3][x+3]){
+                        return board[y][x];
                     }
-                } else if(player != board[yi][xi]){
-                    counter = 0;
-                    player = board[yi][xi];
                 }
-                xi += 1;
-                yi += 1;
+            }
+        } else if(dir == 3){
+            for(y = 0; y <= board.length-4; y++){
+                for(x = 0; x < board[y].length - 4; x++){
+                    if(board[y][x] == board[y+1][x+1] &&
+                       board[y][x] == board[y+2][x+2] &&
+                       board[y][x] == board[y+3][x+3]){
+                        return board[y][x];
+                    }
+                }
             }
         }
         
