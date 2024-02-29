@@ -143,7 +143,7 @@ public class Board
                 }
             }
         } else if(dir == 2){
-            for(y = board.length; y >= 3; y--){
+            for(y = board.length-1; y >= 3; y--){
                 for(x = 0; x <= board[y].length - 4; x++){
                     if(board[y][x] == board[y-1][x+1] &&
                        board[y][x] == board[y-2][x+2] &&
