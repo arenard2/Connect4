@@ -10,6 +10,11 @@ public class main
             board.getMove(move);
             w = board.checkWinner();
         }
-        System.out.println("Winner: " + w + "!");
+        board.printBoard();
+        if(w == 't'){
+            System.out.println("Tie!");
+        }else{
+            System.out.println("Winner: " + w + "!");
+        }
     }
 }

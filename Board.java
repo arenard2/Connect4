@@ -53,13 +53,17 @@ public class Board
     /*Returns 1 if move is possible and 0 if not*/
     public int makeMove(int pos, Player player)
     {
-        for(int i = 0; i < board.length; i++){
-            if(i >= 0){    
-                if(board[i][pos] != ' '){
-                    board[i-1][pos] = player.getName();
+        for(int i = 0; i < board.length; i++){    
+            if(i+1 != board.length){
+                if(board[i][pos] != ' ' && i == 0){
+                    return 0;
+                } else if(board[i+1][pos]!= ' '){
+                    board[i][pos] = player.getName();
+                    return 1;
+                } else if(i+1 == board.length-1 && board[i+1][pos] == ' '){
+                    board[i+1][pos] = player.getName();
+                    return 1;
                 }
-            } else if(board[i][pos] != ' ' && i == 0){
-                return 0;
             }
         }
         return 1;
