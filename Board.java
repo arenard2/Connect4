@@ -74,25 +74,24 @@ public class Board
     {
         char dir1 = ' ';
         char dir2 = ' ';
-        char dir3 = traverse(2, 0, 0);
-        if(dir3 != ' '){
-            return dir3;
-        }
-        
-        dir3 = traverse(3, 0, 0);
-        if(dir3 != ' '){
-            return dir3;
-        }
+        char dir3 = ' ';
+        char dir4 = ' ';
         
         for(int y = 0; y < board.length; y++){
             dir1 = traverse(0, 0, y);
             for(int x = 0; x < board.length; x++){
                 dir2 = traverse(1, x, y);
+                dir3 = traverse(2, x, y);
+                dir4 = traverse(3, x, y);
                 
                 if(dir1 != ' '){
                     return dir1;
                 } else if(dir2 != ' '){
                     return dir2;
+                } else if(dir3 != ' '){
+                    return dir3;
+                } else if(dir4 != ' '){
+                    return dir4;
                 }
             }
         }
@@ -143,23 +142,21 @@ public class Board
                 }
             }
         } else if(dir == 2){
-            for(y = board.length-1; y >= 3; y--){
-                for(x = 0; x <= board[y].length - 4; x++){
-                    if(board[y][x] == board[y-1][x+1] &&
-                       board[y][x] == board[y-2][x+2] &&
-                       board[y][x] == board[y-3][x+3]){
-                        return board[y][x];
-                    }
+            //top-left to bottom-right
+            if(x + 3 < board[0].length && y + 3 < board.length){
+                if(board[y][x] == board[y+1][x+1] &&
+                   board[y][x] == board[y+2][x+2] &&
+                   board[y][x] == board[y+3][x+3]){
+                    return board[y][x];
                 }
             }
         } else if(dir == 3){
-            for(y = 0; y <= board.length-4; y++){
-                for(x = 0; x < board[y].length - 4; x++){
-                    if(board[y][x] == board[y+1][x+1] &&
-                       board[y][x] == board[y+2][x+2] &&
-                       board[y][x] == board[y+3][x+3]){
-                        return board[y][x];
-                    }
+            //top-right to bottom-left
+            if(x - 3 >= 0 && y + 3 < board.length){
+                if(board[y][x] == board[y+1][x-1] &&
+                   board[y][x] == board[y+2][x-2] &&
+                   board[y][x] == board[y+3][x-3]){
+                    return board[y][x];
                 }
             }
         }
